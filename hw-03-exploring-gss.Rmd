@@ -88,8 +88,25 @@ Answers to this question are stored in the `harass5` variable in our dataset.
 
 1.  What are the possible responses to this question and how many respondents chose each of these answers?
 
+```{r harass5-counts, eval = TRUE}
+gss16 %>%
+  count(harass5)
+```
+
+
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
+    
+```{r harass5-percentage, eval = TRUE}
+gss16 %>%
+  filter(!is.na(harass5) & harass5 != "Does not apply") %>%
+  summarise(
+    total_responses = n(),
+    yes_count = sum(harass5 == "Yes"),
+    harassment_rate = (yes_count / total_responses) * 100
+  )
+```
+1469 people answered the question, 237 of them answered yes, and the proportion of harassment was 16.13%
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
