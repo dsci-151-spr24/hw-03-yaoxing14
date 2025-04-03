@@ -56,6 +56,20 @@ library(dsbox)
 
 ## Data
 
+
+```{r view-data, eval = TRUE}
+glimpse(gss16)  
+```
+
+```{r data-dimensions, eval = TRUE}
+dim(gss16)
+```
+```{r preview-data, eval = TRUE}
+head(gss16) 
+```
+
+
+
 The data can be found in the **dsbox** package, and it's called `gss16`.
 Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
 You can find out more about the dataset by inspecting its documentation, which you can access by running `?gss16` in the Console or using the Help menu in RStudio to search for `gss16`.
