@@ -116,7 +116,14 @@ The 2016 GSS also asked respondents how many hours and minutes they spend on ema
 The responses to these questions are recorded in the `emailhr` and `emailmin` variables.
 For example, if the response is 2.5 hrs, this would be recorded as `emailhr = 2` and `emailmin = 30`.
 
+
 3.  Create a new variable called `email` that combines these two variables to reports the number of minutes the respondents spend on email weekly.
+
+```{r create-email, eval = TRUE}
+gss16 <- gss16 %>%
+  mutate(email = emailhr * 60 + emailmin)
+```
+
 
 4.  Visualize the distribution of this new variable.
     Find the mean and the median number of minutes respondents spend on email weekly.
