@@ -268,12 +268,58 @@ Responses that were originally Don't know, No answer and Not applicable are alre
     The remaining levels can be left as is.
     Don't overwrite the existing `advfront`, instead pick a different, informative name for your new variable.
 
+```{r}    
+gss16 <- gss16 %>%
+  mutate(
+    advfront_recode = case_when(
+      advfront == "Strongly agree" | advfront == "Agree" ~ "Yes",
+      advfront == "Disagree" | advfront == "Strongly disagree" ~ "No",
+      is.na(advfront) ~ NA_character_, 
+      TRUE ~ advfront  
+    )
+  )
+```
+
 11. In a new variable, recode `polviews` such that Extremely liberal, Liberal, and Slightly liberal, are mapped to `"Liberal"`, and Slghtly conservative, Conservative, and Extrmly conservative disagree are mapped to `"Conservative"`.
     The remaining levels can be left as is.
     Make sure that the levels are in a reasonable order.
     Don't overwrite the existing `polviews`, instead pick a different, informative name for your new variable.
+    
+```{r}
+gss16 <- gss16 %>%
+  mutate(
+    polviews_recode = case_when(
+      polviews == "Extremely liberal" | polviews == "Liberal" | polviews == "Slightly liberal" ~ "Liberal",
+      polviews == "Extremely conservative" | polviews == "Conservative" | polviews == "Slightly Conservative" ~ "Conservative",
+      is.na(polviews) ~ NA_character_, 
+      TRUE ~ polviews  
+    )
+  )
+```
+
+```{r}
+table(gss16$advfront_recode)
+table(gss16$polviews_recode)
+```
+
 
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
+
+```{r}
+library(ggplot2)
+
+ggplot(gss16, aes(x = advfront_recode, fill = polviews_recode)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "The relationship between scientific research and political views",
+    x = "Opinion on the Future (advfront_recode)",
+    y = "Count",
+    fill = "Political Views (polviews_recode)"
+  ) +
+  theme_minimal()
+```
+
+I observed the chart and found that no matter whether it is Liberal, Moderate or Conservative, most people chose "Don't know" when asked "Will scientific research make the future better?" The second most popular answer is "Yes", and the last is "No". This shows that people are still not sure about scientific research, and the same trend exists even among people with different political positions.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
