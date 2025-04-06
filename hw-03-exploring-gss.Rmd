@@ -1,12 +1,14 @@
 ---
 title: "HW 03 - Exploring the GSS"
 author: "Yao Xing Qian"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r include = FALSE}
 knitr::opts_chunk$set(
-  eval = FALSE,
+  eval = TRUE,
   out.width = "80%",
   fig.asp = 0.618,
   fig.width = 10,
@@ -108,7 +110,7 @@ gss16 %>%
 ```
 1469 people answered the question, 237 of them answered yes, and the proportion of harassment was 16.13%
 
-🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
+ knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Part 2: Time spent on email
 
@@ -239,7 +241,7 @@ ggplot(model_data, aes(x = pred, y = resid)) +
 
 I created a plot of predicted values vs residuals. From the graph, most of the points are concentrated at the predicted value of 250. As the values go higher, the points start to become more scattered. This shows that most people don’t spend much time on email.
 
-🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
+ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Part 3: Political views and science research
 
@@ -307,7 +309,6 @@ table(gss16$polviews_recode)
 
 ```{r}
 library(ggplot2)
-
 ggplot(gss16, aes(x = advfront_recode, fill = polviews_recode)) +
   geom_bar(position = "dodge") +
   labs(
@@ -321,5 +322,5 @@ ggplot(gss16, aes(x = advfront_recode, fill = polviews_recode)) +
 
 I observed the chart and found that no matter whether it is Liberal, Moderate or Conservative, most people chose "Don't know" when asked "Will scientific research make the future better?" The second most popular answer is "Yes", and the last is "No". This shows that people are still not sure about scientific research, and the same trend exists even among people with different political positions.
 
-🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
+Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
